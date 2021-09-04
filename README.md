@@ -20,7 +20,46 @@
 - Transform
   - Modify data as it is read and written
 
+## Implementing & Consuming
+### Implementing
+`require("stream")`
+### Consuming
+piping and events.
+
+# Piped Stream
+```node
+	src.pipe(b);
+```
+**Duplex** streams can chained piped;
+```node
+	src.pipe(b).pipe(c).pipe(d);
+```
+
+# Events and Functions
+## Events
+| Readable | Writable    |
+|----------|-------------|
+| data     | drain       |
+| end      | finish      |
+| error    | error       |
+| close    | close       |
+| readable | pipe/unpipe |
+## Functions
+| Readable                    | Writable             |
+|-----------------------------|----------------------|
+| pipe(), unpipe()            | write()              |
+| read(), unshift(), resume() | end()                |
+| pause(), isPaused()         | cork(), uncork()     |
+| setEncoding()               | setDefaultEncoding() |
+
+# Readable States
+1. Paused (stream.read())
+2. Flowing (EventEmitter)
+```node 
+stream.resume(); // Flowing Mode
+stream.pause(); // Paused Mode
+```
+
 ## Resources
 [Advanced NodeJs](https://app.pluralsight.com/library/courses/nodejs-advanced/table-of-contents)
-
-
+[Mastering Node.js](https://learning.oreilly.com/library/view/mastering-nodejs-/9781785888960/)

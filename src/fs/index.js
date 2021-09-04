@@ -1,4 +1,5 @@
 require('module-alias/register');
+
 const { createFilePath, getFilePath } = require('@helpers/file-paths');
 const fs = require('fs');
 const server = require('http').createServer();
@@ -19,4 +20,7 @@ server.on('request', (req, res) => {
   src.pipe(res);
 });
 
-server.listen(8001);
+const PORT = 8005;
+server.listen(PORT, () => {
+  console.log(`make a curl request: curl localhost:${PORT}`)
+});
